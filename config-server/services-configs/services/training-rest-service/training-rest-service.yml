@@ -1,0 +1,4 @@
+funny:
+  message:
+    begin: "I start in the config server"
+    end: "I am overridden"
