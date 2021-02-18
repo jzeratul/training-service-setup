@@ -2,6 +2,10 @@
 /target
 /*/target
 
+## VSCode
+/.history
+/*/.history
+
 ## IntelliJ
 .idea/
 *.iml
