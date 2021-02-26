@@ -6,6 +6,25 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/jzeratul/training-service-setup.git
-          username: jzeratul
+          uri: file://${user.home}/Developer/ws-me/training-service-setup-config
+          search-paths: 'services/{application},environments/{profile}'
+      discovery:
+        enabled: true
+        service-id: config-server
+  application:
+    name: config-server
 
+
+
+logging:
+  level:
+    ROOT: INFO
+
+management:
+  endpoints:
+    enabled-by-default: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
