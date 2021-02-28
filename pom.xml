@@ -24,18 +24,27 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
 		<spring-cloud.version>2020.0.1</spring-cloud.version>
+    <spring.boot.admin.version>2.4.0</spring.boot.admin.version>
 	</properties>
 
 	<modules>
-    <module>service-registry</module>
 		<module>config-server</module>
+    <module>service-registry</module>
     <module>training-service1</module>
     <module>training-service2</module>
+    <module>admin-server</module>
   </modules>
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
+
+      <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-starter-server</artifactId>
+        <version>${spring.boot.admin.version}</version>
+      </dependency>
+
+      <dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring-cloud.version}</version>

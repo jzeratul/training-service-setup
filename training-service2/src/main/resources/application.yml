@@ -1,10 +1,9 @@
 server:
-  port: 8761
+  port: 9605
 
-
-logging:
-  level:
-    ROOT: INFO
+spring:
+  application:
+    name: training-service2
 
 management:
   endpoints:
@@ -30,16 +29,3 @@ management:
     git:
       mode: full
       enabled: true
-
-spring:
-  application:
-    name: service-registry
-
-eureka:
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-  instance:
-    hostname: localhost
