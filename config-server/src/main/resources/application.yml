@@ -7,6 +7,8 @@ spring:
       server:
         git:
           uri: file://${user.home}/Developer/ws-me/training-service-setup-config
+          search-paths: '{application}'
+          refresh-rate: 300
       discovery:
         enabled: true
         service-id: config-server
