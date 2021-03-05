@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>training-service-setup</artifactId>
+    <groupId>org.jzeratul.example</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>service1-api</artifactId>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.jzeratul.example</groupId>
+      <artifactId>service1-contracts</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.swagger.parser.v3</groupId>
+      <artifactId>swagger-parser</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openapitools</groupId>
+      <artifactId>jackson-databind-nullable</artifactId>
+    </dependency>
+
+    <!--  Start libs are required because in the generated API-->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons-core</artifactId>
+    </dependency>
+    <!--  END libs are required because in the generated API-->
+
+  </dependencies>
+  <build>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>resource-dependencies</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <type>jar</type>
+              <includeArtifactIds>service1-contracts</includeArtifactIds>
+              <includes>**/*.yaml</includes>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>${openapi-generator-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.build.directory}/openapi.yaml</inputSpec>
+
+              <generatorName>spring</generatorName>
+              <library>spring-boot</library>
+
+              <apiPackage>org.jzeratul.example.service1.api</apiPackage>
+              <modelPackage>org.jzeratul.example.service1.model</modelPackage>
+
+              <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+
+              <configOptions>
+                <delegatePattern>false</delegatePattern>
+                <dateLibrary>java8</dateLibrary>
+                <bigDecimalAsString>true</bigDecimalAsString>
+                <booleanGetterPrefix>is</booleanGetterPrefix>
+                <serializableModel>true</serializableModel>
+                <useOptional>true</useOptional>
+                <useTags>true</useTags>
+                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+
+                <!--                <reactive>true</reactive>-->
+                <skipDefaultInterface>true</skipDefaultInterface>
+                <interfaceOnly>true</interfaceOnly>
+                <swaggerDocketConfig>true</swaggerDocketConfig>
+                <title>jmoney</title>
+
+                <!--            TODO explore this option for lombok maybe?    <additionalModelTypeAnnotations></additionalModelTypeAnnotations>-->
+                <licenseName>MIT</licenseName>
+                <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+
+              </configOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+</project>

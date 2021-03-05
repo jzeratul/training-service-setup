@@ -1,27 +1,33 @@
-## Maven
-/target
-/*/target
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-## VSCode
-/.history
-/*/.history
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-## IntelliJ
-.idea/
+### IntelliJ IDEA ###
+.idea
+*.iws
 *.iml
+*.ipr
 
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-## Log files
-logs/
-*.log
-
-## Tomcat working directory
-work/
-
-.DS_Store
-/*/tmp
-
-## Temp files / directories created by running Docker containers
-hsperfdata_root/
-tomcat-docbase.*/
-
+### VS Code ###
+.vscode/

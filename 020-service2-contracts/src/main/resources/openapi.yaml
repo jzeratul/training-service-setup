@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: jdemo
+  description: "a funny application that groups together some tech"
+  termsOfService: todo
+  contact:
+    email: todo@todo.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.1-SNAPSHOT
+tags:
+  - name: data
+    description: demo tag
+
+paths:
+
+  /v1/data:
+    get:
+      tags:
+        - data
+      summary: demo
+      description: demo
+      operationId: getData
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataObject'
+      x-codegen-request-body-name: body
+
+components:
+  schemas:
+    DataObject:
+      type: object
+      properties:
+        contents:
+          type: string

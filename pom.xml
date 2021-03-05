@@ -7,8 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+    <version>2.5.0-SNAPSHOT</version>
 	</parent>
 
 	<groupId>org.jzeratul.example</groupId>
@@ -23,20 +22,62 @@
     <java.version>15</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-		<spring-cloud.version>2020.0.1</spring-cloud.version>
+    <spring-cloud.version>2020.0.2-SNAPSHOT</spring-cloud.version>
     <spring.boot.admin.version>2.4.0</spring.boot.admin.version>
+    <springdoc-openapi.version>1.5.5</springdoc-openapi.version>
+    <openapi-generator-maven-plugin.version>5.0.1</openapi-generator-maven-plugin.version>
+    <openapi-validator-maven-plugin.version>1.0.2</openapi-validator-maven-plugin.version>
+
+    <swagger-parser.version>2.0.22</swagger-parser.version>
+    <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+
+    <!--  Start libs are required because in the genereated API-->
+    <springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
+    <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
+    <spring-data-commons-core.version>1.4.1.RELEASE</spring-data-commons-core.version>
+    <!--  END libs are required because in the genereated API-->
+
 	</properties>
 
 	<modules>
-		<module>config-server</module>
-    <module>service-registry</module>
-    <module>training-service1</module>
-    <module>training-service2</module>
-    <module>admin-server</module>
+
+		<module>001-service-registry</module>
+    <module>002-config-server</module>
+    <module>003-admin-server</module>
+
+    <module>010-service1-contracts</module>
+    <module>011-service1-api</module>
+    <module>012-service1</module>
+
+    <module>020-service2-contracts</module>
+    <module>021-service2-api</module>
+    <module>022-service2</module>
+
   </modules>
 
 	<dependencyManagement>
 		<dependencies>
+
+      <dependency>
+        <groupId>org.jzeratul.example</groupId>
+        <artifactId>service1-contracts</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jzeratul.example</groupId>
+        <artifactId>service2-contracts</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jzeratul.example</groupId>
+        <artifactId>service1-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jzeratul.example</groupId>
+        <artifactId>service2-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
       <dependency>
         <groupId>de.codecentric</groupId>
@@ -51,16 +92,89 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>${springdoc-openapi.version}</version>
+      </dependency>
+
+      <!--  Required by the open api generator -->
+      <dependency>
+        <groupId>io.swagger.parser.v3</groupId>
+        <artifactId>swagger-parser</artifactId>
+        <version>${swagger-parser.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.openapitools</groupId>
+        <artifactId>jackson-databind-nullable</artifactId>
+        <version>${jackson-databind-nullable.version}</version>
+      </dependency>
+      <!--  End Required by the open api generator -->
+
+      <!--  Start libs are required because in the generated API-->
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${springfox-swagger-ui.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${springfox-swagger2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-commons-core</artifactId>
+        <version>${spring-data-commons-core.version}</version>
+      </dependency>
+      <!--  END libs are required because in the generated API-->
+
 		</dependencies>
+
 	</dependencyManagement>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+    </repository>
+    <repository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <url>https://repo.spring.io/snapshot</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <url>https://repo.spring.io/snapshot</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
 </project>
