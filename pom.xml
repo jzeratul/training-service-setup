@@ -52,6 +52,7 @@
     <module>020-service2-contracts</module>
     <module>021-service2-api</module>
     <module>022-service2</module>
+    <module>023-service2-java-client</module>
 
   </modules>
 
