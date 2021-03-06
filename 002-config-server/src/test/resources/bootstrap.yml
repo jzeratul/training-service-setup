@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      discovery:
+        enabled: false
+
+management:
+  endpoints:
+    enabled-by-default: false

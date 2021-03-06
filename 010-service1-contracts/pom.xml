@@ -42,15 +42,6 @@
         </executions>
       </plugin>
 
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-
-
       <!-- Packaging documentation too -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

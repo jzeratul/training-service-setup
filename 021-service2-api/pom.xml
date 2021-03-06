@@ -105,6 +105,11 @@
                 <useTags>true</useTags>
                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
 
+                <additionalModelTypeAnnotations>
+                  @lombok.Data
+                  @lombok.Builder
+                </additionalModelTypeAnnotations>
+
                 <!--                <reactive>true</reactive>-->
                 <skipDefaultInterface>true</skipDefaultInterface>
                 <interfaceOnly>true</interfaceOnly>
