@@ -1,7 +1,7 @@
 package org.jzeratul.example.service2.endpoints;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jzeratul.example.service2.api.DataApi;
+import org.jzeratul.example.service2.api.Data2Api;
 import org.jzeratul.example.service2.model.DataObject;
 import org.springframework.http.ResponseEntity;
 
@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class DataEndpoint implements DataApi {
+public class DataEndpoint implements Data2Api {
 
   @Override
   public ResponseEntity<List<DataObject>> getData() {

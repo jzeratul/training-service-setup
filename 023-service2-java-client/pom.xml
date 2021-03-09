@@ -92,38 +92,19 @@
               <goal>generate</goal>
             </goals>
             <configuration>
+
               <inputSpec>${project.build.directory}/openapi.yaml</inputSpec>
-
-<!--              <generatorName>java</generatorName>-->
-<!--              <library>feign</library>-->
-
               <generatorName>java</generatorName>
-              <library>feign</library>
+              <library>resttemplate</library>
 
               <apiPackage>org.jzeratul.example.service2.client.api</apiPackage>
               <modelPackage>org.jzeratul.example.service2.client.model</modelPackage>
 
-              <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+              <verbose>true</verbose>
 
               <configOptions>
-<!--                <delegatePattern>false</delegatePattern>-->
-<!--                <dateLibrary>java8</dateLibrary>-->
-<!--                <bigDecimalAsString>true</bigDecimalAsString>-->
-<!--                <booleanGetterPrefix>is</booleanGetterPrefix>-->
-<!--                <serializableModel>true</serializableModel>-->
-<!--                <useOptional>true</useOptional>-->
-<!--                <useTags>true</useTags>-->
-<!--                <hideGenerationTimestamp>true</hideGenerationTimestamp>-->
 
-<!--                <additionalModelTypeAnnotations>-->
-<!--                  @lombok.Data-->
-<!--                  @lombok.Builder-->
-<!--                </additionalModelTypeAnnotations>-->
-
-                <!--                <reactive>true</reactive>-->
-                <skipDefaultInterface>true</skipDefaultInterface>
-                <interfaceOnly>false</interfaceOnly>
-<!--                <swaggerDocketConfig>true</swaggerDocketConfig>-->
+                <dateLibrary>java8</dateLibrary>
                 <title>jdemo</title>
 
                 <licenseName>MIT</licenseName>

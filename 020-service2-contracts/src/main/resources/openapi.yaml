@@ -10,7 +10,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.1-SNAPSHOT
 tags:
-  - name: data
+  - name: data2
     description: demo tag
 
 paths:
@@ -18,7 +18,7 @@ paths:
   /v1/data:
     get:
       tags:
-        - data
+        - data2
       summary: demo
       description: demo
       operationId: getData

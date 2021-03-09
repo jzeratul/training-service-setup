@@ -19,6 +19,11 @@
     </dependency>
 
     <dependency>
+      <groupId>org.jzeratul.example</groupId>
+      <artifactId>service2-java-client</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
