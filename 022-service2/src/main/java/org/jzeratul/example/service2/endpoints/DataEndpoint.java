@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jzeratul.example.service2.api.Service2DataApi;
 import org.jzeratul.example.service2.model.S2DataObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Random;
@@ -11,6 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Slf4j
+@RestController
 public class DataEndpoint implements Service2DataApi {
 
   @Override

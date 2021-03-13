@@ -60,6 +60,24 @@
       <artifactId>jackson-jaxrs-json-provider</artifactId>
     </dependency>
 
+    <!--  Start libs are required because in the genereated API-->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons-core</artifactId>
+      <version>1.4.1.RELEASE</version>
+    </dependency>
+    <!--  END libs are required because in the genereated API-->
+
   </dependencies>
 
 
@@ -99,20 +117,42 @@
             <configuration>
 
               <inputSpec>${project.build.directory}/openapi.yaml</inputSpec>
-              <generatorName>java</generatorName>
-              <library>resttemplate</library>
+
+              <templateDirectory>${project.basedir}/src/main/resources/openapi-templates</templateDirectory>
+
+              <generatorName>spring</generatorName>
+              <library>spring-cloud</library>
 
               <apiPackage>org.jzeratul.example.service2.client.api</apiPackage>
               <modelPackage>org.jzeratul.example.service2.client.model</modelPackage>
 
               <verbose>true</verbose>
 
+              <generateApiTests>false</generateApiTests>
+              <generateModelTests>false</generateModelTests>
+
+
               <configOptions>
 
                 <dateLibrary>java8</dateLibrary>
                 <title>jdemo</title>
 
+                <bigDecimalAsString>true</bigDecimalAsString>
+                <booleanGetterPrefix>is</booleanGetterPrefix>
+
                 <serializationLibrary>jackson</serializationLibrary>
+                <serializableModel>true</serializableModel>
+                <useOptional>true</useOptional>
+                <useTags>true</useTags>
+
+                <additionalModelTypeAnnotations>
+                  @lombok.Data
+                  @lombok.Builder
+                </additionalModelTypeAnnotations>
+
+                <skipDefaultInterface>true</skipDefaultInterface>
+
+                <title>service2</title>
 
                 <licenseName>MIT</licenseName>
                 <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
