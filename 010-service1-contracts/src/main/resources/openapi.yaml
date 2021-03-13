@@ -10,7 +10,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.1-SNAPSHOT
 tags:
-  - name: data
+  - name: service1-data
     description: demo tag
 
 paths:
@@ -18,7 +18,7 @@ paths:
   /v1/data:
     get:
       tags:
-        - data
+        - service1-data
       summary: demo
       description: demo
       operationId: getData
@@ -30,12 +30,12 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DataObject'
+                  $ref: '#/components/schemas/S1DataObject'
       x-codegen-request-body-name: body
 
 components:
   schemas:
-    DataObject:
+    S1DataObject:
       type: object
       properties:
         contents:

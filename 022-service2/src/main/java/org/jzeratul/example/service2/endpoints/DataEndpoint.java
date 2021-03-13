@@ -1,8 +1,8 @@
 package org.jzeratul.example.service2.endpoints;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jzeratul.example.service2.api.Data2Api;
-import org.jzeratul.example.service2.model.DataObject;
+import org.jzeratul.example.service2.api.Service2DataApi;
+import org.jzeratul.example.service2.model.S2DataObject;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -11,10 +11,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class DataEndpoint implements Data2Api {
+public class DataEndpoint implements Service2DataApi {
 
   @Override
-  public ResponseEntity<List<DataObject>> getData() {
+  public ResponseEntity<List<S2DataObject>> getData() {
 
     int capacity = getRandomNumberUsingThreadLocal(1000);
     if (capacity < 0) {
@@ -29,7 +29,7 @@ public class DataEndpoint implements Data2Api {
     var results = new Random().doubles(capacity, min, max)
             .sorted()
             .boxed()
-            .map(r -> DataObject.builder()
+            .map(r -> S2DataObject.builder()
                     .value(r)
                     .contents("Useless string value " + r)
                     .build())

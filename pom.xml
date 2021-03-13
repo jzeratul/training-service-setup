@@ -29,7 +29,8 @@
     <openapi-validator-maven-plugin.version>1.0.2</openapi-validator-maven-plugin.version>
 
     <swagger-parser.version>2.0.22</swagger-parser.version>
-    <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+    <jackson.version>2.12.2</jackson.version>
+    <jackson-databind-nullable-version>0.2.1</jackson-databind-nullable-version>
 
     <!--  Start libs are required because in the genereated API-->
     <springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
@@ -122,9 +123,37 @@
       <dependency>
         <groupId>org.openapitools</groupId>
         <artifactId>jackson-databind-nullable</artifactId>
-        <version>${jackson-databind-nullable.version}</version>
+        <version>${jackson-databind-nullable-version}</version>
       </dependency>
       <!--  End Required by the open api generator -->
+
+      <!-- Required by the open api generator for the feing client -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-base</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-json-provider</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <!-- END Required by the open api generator for the feing client -->
 
       <!--  Start libs are required because in the generated API-->
       <dependency>
