@@ -7,8 +7,6 @@ import org.jzeratul.example.service1.model.S1DataObject;
 import org.jzeratul.example.service2.client.api.Service2DataApiClient;
 import org.jzeratul.example.service2.client.model.S2DataObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,8 +20,6 @@ public class DataEndpoint implements Service1DataApi {
   private final Service2DataApiClient service2DataApiClient;
 
   @Override
-  @MessageMapping("/v1/data")
-  @SendTo("/topic/data")
   public ResponseEntity<List<S1DataObject>> getData() {
 
     log.debug("In service1, calling service2");
@@ -35,7 +31,7 @@ public class DataEndpoint implements Service1DataApi {
                     .map(
                             s2do -> S1DataObject.builder()
                                     .value(s2do.getValue())
-                                    .contents(s2do.getContents())
+                                    .contents("x")
                                     .build()
                     )
                     .collect(Collectors.toList()));
