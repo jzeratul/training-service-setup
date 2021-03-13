@@ -1,4 +1,7 @@
 ## stack
 
-java 15
-spring cloud
+* java 15
+* openapi-generator (api generation via openapi v3)
+* spring cloud (eureka/config-server/admin-server/feign client/)
+* reactjs
+* websockets
