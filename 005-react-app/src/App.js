@@ -1,35 +1,49 @@
 import logo from './logo.svg';
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import './App.css';
+import { useEffect, useState } from 'react';
+import {
+  BarChart,
+  Bar,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+  Tooltip
+} from 'recharts';import './App.css';
+import io from 'socket.io-client';
 
-const API_URL = 'http://localhost/training-service/api/v1/data';
+// const API_URL = 'http://localhost:9600/training-app/api/v1/data';
+const API_URL = 'http://localhost:9604/v1/data';
 
-const getMessage = () => {
-  return axios.get(`${API_URL}/message`);
-}
+// const getMessage = () => {
+//   return axios.get(`${API_URL}`);
+// }
+
+const socket = io('http://localhost:9604/v1/data', {
+  transports: ['websocket', 'polling']
+});
 
 function App() {
 
-  const [message, setMessage] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
 
-    getMessage().then(
-      (response) => {
-        setMessage(response.data);
-      },
-      (error) => {
-        setMessage(error.response.data)
-      }
-    )
+    socket.on('cpu', newData => {
+      setData(currentData => [...currentData, newData]);
+    });
+
   }, [])
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <span>{message}</span>
+        <LineChart width={500} height={300} data={data}>
+          <XAxis dataKey="contents" />
+          <YAxis />
+          <Line dataKey="value" />
+        </LineChart>
       </header>
     </div>
   );

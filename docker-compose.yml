@@ -1,0 +1,18 @@
+version: '3.8'
+
+# Define services
+services:
+
+  nginx:
+    image: nginx:latest
+    container_name: training-nginx
+    volumes:
+      - ./004-nginx-server/nginx.conf:/etc/nginx/nginx.conf
+      - ./logs/nginx.error.log:/var/logs/nginx/nginx.error.log
+      - ./logs/nginx.access.log:/var/logs/nginx/nginx.access.log
+    ports:
+      - 9600:80
+      - 443:443
+
+networks:
+  database:
