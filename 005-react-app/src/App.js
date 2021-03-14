@@ -1,77 +1,35 @@
 import logo from './logo.svg'
 import axios from "axios"
 import { useEffect, useState } from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Col, Container, Row } from "react-bootstrap";
 
 import './App.css'
 import {Button} from "react-bootstrap";
+import React from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from "recharts";
 
 
+const API_URL = 'http://localhost:9600/training-app/api/v1/data';
 
-const xxx = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+export default function App() {
 
-
-
-export const App = () => {
-
-  const [data, setData] = useState([]);
+  const [data1, setData] = useState([])
 
   const loadData = () => {
-    axios.get("http://localhost:9600/training-app/api/v1/data").then(
-
+    axios.get(`${API_URL}`, ).then(
       (response) => {
-
-
-        console.log(response.data)
-
-        setData((curentData) => [...curentData, response.data]);
+        setData(response.data)
       },
       (error) => {
-
-        console.log(error);
+        console.log(">>>>>>" + error)
       }
     )
   }
@@ -80,45 +38,48 @@ export const App = () => {
     loadData();
   }, [])
 
-  const onclick = () => {
+
+  const onReloadClick = () => {
     loadData();
   }
 
+
   return (
-
     <main>
-      <img src={logo} className="App-logo" alt="logo" width={60} height={60}/>
-      <section className="content mt-5">
-        <div className="container-fluid">
-          <div className="row">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                width={500}
-                height={300}
-                data={data}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-              </LineChart>
-            </ResponsiveContainer>
 
-            <Button variant={"info"} onClick={onclick} > Reload</Button>
-          </div>
-        </div>
-      </section>
+      <Container>
+        <img src={logo} className="App-logo" alt="logo" width={60} height={60}/>
+      </Container>
+
+      <Container>
+        <Button variant={"info"} onClick={onReloadClick} > Reload</Button>
+      </Container>
+
+
+      <Container>
+        <LineChart
+          width={1500}
+          height={800}
+          data={data1}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 0,
+            bottom: 5
+          }}
+        >
+          <XAxis dataKey="x" />
+          <YAxis />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke="#8884d8"
+          />
+        </LineChart>
+      </Container>
+
     </main>
   );
 }
 
-export default App

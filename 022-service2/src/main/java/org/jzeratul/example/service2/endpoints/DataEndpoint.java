@@ -18,17 +18,17 @@ public class DataEndpoint implements Service2DataApi {
   @Override
   public ResponseEntity<List<S2DataObject>> getData() {
 
-    int capacity = getRandomNumberUsingThreadLocal(1000);
+    int capacity = getRandomNumberUsingThreadLocal(10);
     if (capacity < 0) {
       capacity = -1 * capacity;
     }
 
     int min = getRandomNumberUsingThreadLocal(100);
-    int max = getRandomNumberUsingThreadLocal(Integer.MAX_VALUE);
+    int max = getRandomNumberUsingThreadLocal(100);
 
     log.info("Generating {} random numbers between {} and {}", capacity, min, max);
 
-    var results = new Random().doubles(capacity, min, max)
+    var results = new Random().doubles(capacity, -min, max)
             .sorted()
             .boxed()
             .map(r -> S2DataObject.builder()
