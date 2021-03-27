@@ -4,4 +4,5 @@
 * openapi-generator (api generation via openapi v3)
 * spring cloud (eureka/config-server/admin-server/feign client/)
 * reactjs
-* websockets
+
+![](doc/architecture.png)

@@ -1,0 +1,37 @@
+@startuml
+
+agent reactjs
+node nginx
+node config_server
+node service_registry
+hexagon spring_boot_admin
+
+artifact feign
+node service1
+node service2
+
+reactjs ~~> nginx
+nginx  ~~> service1
+service1 --> feign
+
+feign .ri.> service_registry
+service1 .ri.> service_registry
+service2 .ri.> service_registry
+
+config_server <.le.> service_registry
+spring_boot_admin .up.> service_registry
+
+feign ..>service2
+
+file  service1_structure #palegreen;line:green;line.dashed;text:gray {
+    [openapi3 contract1]
+    [openapi3 api1]
+    [service1_]
+}
+
+file  service2_structure #palegreen;line:green;line.dashed;text:green {
+    [openapi3 contract2]
+    [openapi3 api2]
+    [service2_]
+}
+@enduml

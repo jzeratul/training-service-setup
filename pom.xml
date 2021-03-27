@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.5.0-SNAPSHOT</version>
-	</parent>
+  </parent>
 
-	<groupId>org.jzeratul.example</groupId>
-	<artifactId>training-service-setup</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+  <groupId>org.jzeratul.example</groupId>
+  <artifactId>training-service-setup</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-	<name>Training</name>
-	<description>Various services linked together</description>
+  <name>Training</name>
+  <description>Various services linked together</description>
 
-	<properties>
+  <properties>
     <java.version>15</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <spring-cloud.version>2020.0.2-SNAPSHOT</spring-cloud.version>
+    <spring-cloud.version>2020.0.3-SNAPSHOT</spring-cloud.version>
     <spring.boot.admin.version>2.4.0</spring.boot.admin.version>
-    <springdoc-openapi.version>1.5.5</springdoc-openapi.version>
-    <openapi-generator-maven-plugin.version>5.0.1</openapi-generator-maven-plugin.version>
+    <springdoc-openapi.version>1.5.6</springdoc-openapi.version>
+    <openapi-generator-maven-plugin.version>5.1.0</openapi-generator-maven-plugin.version>
     <openapi-validator-maven-plugin.version>1.0.2</openapi-validator-maven-plugin.version>
 
-    <swagger-parser.version>2.0.22</swagger-parser.version>
+    <swagger-parser.version>2.0.24</swagger-parser.version>
     <jackson.version>2.12.2</jackson.version>
     <jackson-databind-nullable-version>0.2.1</jackson-databind-nullable-version>
 
     <!--  Start libs are required because in the genereated API-->
     <springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
     <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
-    <spring-data-commons-core.version>1.4.1.RELEASE</spring-data-commons-core.version>
     <!--  END libs are required because in the genereated API-->
 
-	</properties>
+  </properties>
 
-	<modules>
+  <modules>
 
-		<module>001-service-registry</module>
+    <module>001-service-registry</module>
     <module>002-config-server</module>
     <module>003-admin-server</module>
 
@@ -64,8 +63,8 @@
     </dependency>
   </dependencies>
 
-	<dependencyManagement>
-		<dependencies>
+  <dependencyManagement>
+    <dependencies>
 
       <dependency>
         <groupId>org.jzeratul.example</groupId>
@@ -100,12 +99,12 @@
       </dependency>
 
       <dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
 
       <dependency>
         <groupId>org.springdoc</groupId>
@@ -166,20 +165,17 @@
         <artifactId>springfox-swagger2</artifactId>
         <version>${springfox-swagger2.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-commons-core</artifactId>
-        <version>${spring-data-commons-core.version}</version>
-      </dependency>
       <!--  END libs are required because in the generated API-->
 
-		</dependencies>
+    </dependencies>
 
-	</dependencyManagement>
+  </dependencyManagement>
 
   <build>
+
     <pluginManagement>
       <plugins>
+
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
