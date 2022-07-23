@@ -10,9 +10,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.jzeratul.example</groupId>
 	<artifactId>service-registry</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>service-registry</name>
 	<description>Demo service registry</description>
 
